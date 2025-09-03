@@ -18,7 +18,7 @@ async function getPersonaje() {
         return personaje
 
     } catch (error) {
-        console.error("Error al obtener el status", error)
+        console.error("Error al obtener el personaje", error)
         throw error
     }
 }

@@ -37,3 +37,4 @@ const datosPersonajes = async function () {
 estadoSeleccionado.addEventListener("change", datosPersonajes);
 
 window.addEventListener("load", datosPersonajes);
+
