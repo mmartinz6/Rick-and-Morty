@@ -1,5 +1,5 @@
 //GET
-async function getPersonaje(status) {
+async function getPersonaje() {
     try {
         
         const response = await fetch ('https://rickandmortyapi.com/api/character',{

@@ -1,19 +1,39 @@
 import { getPersonaje } from "./servicesEstado.js";
 
-const contenedorPersonajes = document.getElementById("contenedorPersonajes")
+const mostrarPersonajes = document.getElementById("mostrarPersonajes")
 const estadoSeleccionado = document.getElementById("estadoSeleccionado")
 
-let personajes = [];
+const datosPersonajes = async function () {
 
-const cargarResultados = async function () {
-    const datos = await getPersonaje();
-    personajes = data.cargarResultados
+    mostrarPersonajes.innerHTML = "";
+    
+    const estado = estadoSeleccionado.value;
 
+    const personajes = await getPersonaje();
+
+    const filtrados = personajes.results.filter(function(personaje){
+        return personaje.status.toLowerCase() === estado.toLowerCase();
+
+    });
+
+    filtrados.map(function(personaje) {
+        const contenedor = document.createElement("div");
+        contenedor.classList.add("div-personaje")
+
+        const imgPersonaje = document.createElement("img");
+        imgPersonaje.src = personaje.image;
+
+        const nomEstado = document.createElement("p");
+        nomEstado.textContent = personaje.name + ": " + personaje.status;
+
+        contenedor.appendChild(imgPersonaje);
+        contenedor.appendChild(nomEstado);
+        mostrarPersonajes.appendChild(contenedor)
+
+
+    });
 }
 
-estadoSelect.addEventListener("change", async function() {
-    const estado = estadoSelect.value
+estadoSeleccionado.addEventListener("change", datosPersonajes);
 
-    const filtrados = personajes.filter(p => p.status.toLowerCase() === estado);
-    mostrarPersonajes(filtrados);
-});
+window.addEventListener("load", datosPersonajes);
